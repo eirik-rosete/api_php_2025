@@ -8,9 +8,9 @@ class DB{
 
     public function __construct(){
        $this->host= 'localhost';
-        $this->db= 'uni_2024_students';
-        $this->user= 'nodeuser';
-        $this->password ='node2024!';
+        $this->db= 'datos_uni2025';
+        $this->user= 'publicUser';
+        $this->password ='Contra-0';
         //$this->charset = 'utf8mb4';*/
     }
     function connect(){
@@ -22,10 +22,10 @@ class DB{
             ];
             $pdo = new PDO($connection,$this->user,$this->password);
             return $pdo;
-            
+
         }catch(PDOException $e){
             print_r('Error connection: ' . $e->getMessage());
-        }   
+        }
     }
 }
 ?>

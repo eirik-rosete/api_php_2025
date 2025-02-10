@@ -18,4 +18,3 @@
 	echo json_encode($data);
 	/*Exponer los datos en "php -S localhost:8000 index.php" */
 ?>
- 
