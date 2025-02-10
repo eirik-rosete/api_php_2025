@@ -7,24 +7,20 @@ class ManageBD extends DB{
 
 	//$classroom =$this->connect()->query('SELECT * FROM classroom');
 	$course=$this->connect()->query('SELECT * FROM course');
-	$department=$this->connect()->query('SELECT * FROM department');
-	$instructor=$this->connect()->query('SELECT * FROM instructor');
+	$agregation=$this->connect()->query('SELECT COUNT(*) AS total_departments FROM department');
 	//$prereq=$this->connect()->query('SELECT * FROM prereq');
 	//$section=$this->connect()->query('SELECT * FROM section');
-	$student=$this->connect()->query('SELECT * FROM student');
-	$takes=$this->connect()->query('SELECT * FROM takes');
-	$teaches=$this->connect()->query('SELECT * FROM teaches');
+	$union=$this->connect()->query('SELECT ID, name, dept_name FROM student UNION SELECT ID, name, dept_name FROM instructor');
+	$except=$this->connect()->query('SELECT * FROM department EXCEPT SELECT * FROM department WHERE budget < 85000');
 	$queries = array (
 		//"advisor"=>$advisor,
 		//"classroom"=>$classroom,
 		"course"=>$course,
-		"department"=>$department,
-		"instructor"=>$instructor,
+		"total_departments"=>$agregation,
 		//"prereq"=>$prereq,
 		//"section"=>$section,
-		"student"=>$student,
-		"takes"=>$takes,
-	    "teaches"=>$teaches
+		"people"=>$union,
+		"departments with a budget greater than 85000"=>$except,
 	);
 
 		return $queries;
